@@ -6,9 +6,9 @@ image never leaves your device.
 
 **Live: https://tasniamoumi.github.io/handframe/** (no camera? choose "Watch the demo")
 
-![Two hands held up to a webcam with a four-cornered frame between them; inside the frame the picture is drawn as glowing blue outlines by the neon outline filter](docs/handframe.jpg)
+![A short clip: two hands hold a frame in front of a webcam while the filter inside it changes from neon outline to thermal, sketch, pixelate, invert and dual-tone](docs/demo.gif)
 
-_The neon outline filter on a laptop webcam. The dots and lines show the hand points being tracked._
+_Six of the nine filters on a laptop webcam. The dots and lines show the hand points being tracked._
 
 ## What it does
 
@@ -22,6 +22,10 @@ _The neon outline filter on a laptop webcam. The dots and lines show the hand po
   takes a photo.
 - **Keyboard.** `→` `←` or `Space` change filter, `1`–`9` pick one, `M` changes mode,
   `S` takes a photo, `H` shows or hides the hand points.
+
+![Two hands held up to a webcam with a four-cornered frame between them; inside the frame the picture is drawn as glowing blue outlines by the neon outline filter](docs/handframe.jpg)
+
+_The neon outline filter._
 
 ## How it works
 
@@ -88,7 +92,7 @@ tests/             Vitest unit tests
 - **How it was tested.** The geometry, smoothing and gesture logic have unit tests. The
   rendering, every filter, both modes, the keyboard controls and photos were checked in a
   headless browser using demo mode. Real-camera tracking was tried by hand on a
-  laptop webcam (the picture above); it depends on MediaPipe and on your lighting, and has
+  laptop webcam (the clip above); it depends on MediaPipe and on your lighting, and has
   no automated test.
 - **The hand model is downloaded from Google's model host** the first time the camera is
   used (about 8 MB), unless you put a copy at `public/models/hand_landmarker.task`.
