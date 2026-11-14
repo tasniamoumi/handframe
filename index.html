@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>handframe</title>
+  <meta name="description" content="Make a live filter window with your hands. Runs in your browser; the camera image never leaves your device.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2311131a'/%3E%3Cpath d='M7 10l18-3-2 16-14 2z' fill='none' stroke='%23ffd166' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1>handframe</h1>
+      <p class="tagline">Hold up both hands to make a frame. Whatever is inside it gets the filter.</p>
+    </div>
+    <a class="source" href="https://github.com/tasniamoumi/handframe">Source on GitHub</a>
+  </header>
+
+  <main>
+    <section class="stage" id="stage" aria-label="Camera view">
+      <canvas id="view" width="960" height="540"></canvas>
+      <canvas id="overlay" width="960" height="540" aria-hidden="true"></canvas>
+      <video id="video" playsinline muted hidden></video>
+
+      <div class="start" id="start">
+        <h2>Start with your camera, or watch the demo</h2>
+        <p>The camera image is processed in this browser tab. Nothing is uploaded or stored.</p>
+        <div class="row">
+          <button class="btn primary" id="start-camera" type="button">Use my camera</button>
+          <button class="btn" id="start-demo" type="button">Watch the demo</button>
+        </div>
+        <p class="error" id="error" role="alert" hidden></p>
+      </div>
+
+      <p class="hint" id="hint" role="status" aria-live="polite" hidden></p>
+      <p class="readout" id="readout" hidden></p>
+      <div class="flash" id="flash" aria-hidden="true"></div>
+    </section>
+
+    <section class="panel" aria-label="Controls">
+      <div class="group">
+        <h2 id="filters-title">Filter</h2>
+        <div class="chips" id="filters" role="radiogroup" aria-labelledby="filters-title"></div>
+      </div>
+      <div class="group split">
+        <div>
+          <h2 id="mode-title">Mode</h2>
+          <div class="chips" id="modes" role="radiogroup" aria-labelledby="mode-title"></div>
+          <p class="note" id="mode-note"></p>
+        </div>
+        <div class="actions">
+          <label class="check"><input type="checkbox" id="show-hands" checked> Show hand points</label>
+          <button class="btn primary" id="snap" type="button" disabled>Take a photo</button>
+          <button class="btn" id="stop" type="button" hidden>Stop</button>
+        </div>
+      </div>
+      <div class="group" id="shots-group" hidden>
+        <h2>Photos</h2>
+        <p class="note">Kept in this tab only. Select one to download it.</p>
+        <div class="shots" id="shots"></div>
+      </div>
+    </section>
+
+    <section class="guide" aria-label="How to use it">
+      <h2>Hand controls</h2>
+      <dl>
+        <div><dt>Make the frame</dt><dd>Show both hands. Your thumb tips and index fingertips are its four corners.</dd></div>
+        <div><dt>Next filter</dt><dd>Touch your middle finger to your thumb on either hand.</dd></div>
+        <div><dt>Take a photo</dt><dd>Touch your ring finger to your thumb.</dd></div>
+      </dl>
+      <p class="note">Keyboard: <kbd>→</kbd> <kbd>←</kbd> or <kbd>Space</kbd> change filter, <kbd>M</kbd> changes mode, <kbd>S</kbd> takes a photo, <kbd>H</kbd> shows or hides hand points.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Hand tracking by MediaPipe, running on your device. Idea inspired by a hand-tracking Python demo by sy4hdan on Instagram; this is a separate browser implementation.</p>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
